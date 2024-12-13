@@ -1,16 +1,12 @@
-pub mod folder_download_filter {
-    use dirs;
-    use std::{fs, path::PathBuf};
-
+use dirs;
+use std::{fs, path::PathBuf};
 
 
     pub struct Void;
 
 
-
-    
     pub trait TCreateFolder {
-        fn create_folder_filters_if_no_exist_in_folder_download(&self);
+        fn create_folder_filters_if_no_exist_in_folder_download();
         fn display_ascii(&self);
     }
 
@@ -19,7 +15,7 @@ pub mod folder_download_filter {
     impl TCreateFolder for Void {
 
 
-        fn create_folder_filters_if_no_exist_in_folder_download(&self) {
+        fn create_folder_filters_if_no_exist_in_folder_download() {
 
 
             if let Some(download_dir) = dirs::download_dir() 
@@ -94,4 +90,3 @@ pub mod folder_download_filter {
         }
 
     }
-}

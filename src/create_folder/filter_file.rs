@@ -1,7 +1,6 @@
-pub mod filter_file {
-    use dirs;
-    use std::fs::{self, ReadDir};
-    use std::path::PathBuf;
+use dirs;
+use std::fs::{self, ReadDir};
+use std::path::PathBuf;
 
 
     pub fn filter_all_files_in_folder_download()
@@ -71,6 +70,19 @@ pub mod filter_file {
                                     }
                             }
                         }
+
+                        else 
+                        {
+                            if let Some(p) = path.file_name()
+                            {
+                                let destination_path:PathBuf = base_dir.join("Other").join(p);
+                                if let Err(e) = fs::rename(&path, &destination_path) 
+                                {
+                                    drop(e);
+                                    // eprintln!("Error moving file '{}': {}", path.display(), e);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -81,4 +93,3 @@ pub mod filter_file {
             println!("Unable to find the downloads folder");
         }
     }
-}
